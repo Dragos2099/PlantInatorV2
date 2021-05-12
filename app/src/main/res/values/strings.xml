@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Project_SI</string>
+    <string name="plant_3">Plant 3</string>
+    <string name="temperature">Temperature</string>
+    <string name="soil_moisture">Soil Moisture :</string>
+    <string name="water_level">Water Level</string>
+    <string name="light">Light</string>
+    <string name="plant_1">Plant 1</string>
+    <string name="plant_2">Plant 2</string>
+    <string name="humidity">Humidity</string>
+    <string name="plantinator">PlantInator</string>
 </resources>
