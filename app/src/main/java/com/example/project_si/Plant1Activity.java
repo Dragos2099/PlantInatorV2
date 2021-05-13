@@ -15,7 +15,7 @@ public class Plant1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant1);
 
-        back= findViewById(R.id.backToProfiles);
+        back= findViewById(R.id.backToProfiles1);
         back.setOnClickListener(v -> backToProfiles());
 
     }
