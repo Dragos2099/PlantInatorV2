@@ -11,6 +11,7 @@ public class ProfilesActivity extends AppCompatActivity {
     private Button back;
     private Button plant1;
     private Button plant2;
+    private Button plant3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class ProfilesActivity extends AppCompatActivity {
         plant2= findViewById(R.id.plant2);
         plant2.setOnClickListener(v -> openPlant2Activity());
 
+        plant3= findViewById(R.id.plant3);
+        plant3.setOnClickListener(v -> openPlant3Activity());
+
     }
 
 
@@ -43,6 +47,11 @@ public class ProfilesActivity extends AppCompatActivity {
 
     public void openPlant2Activity(){
         Intent intent = new Intent(this, Plant2Activity.class);
+        startActivity(intent);
+    }
+
+    public void openPlant3Activity(){
+        Intent intent = new Intent(this, Plant3Activity.class);
         startActivity(intent);
     }
 
