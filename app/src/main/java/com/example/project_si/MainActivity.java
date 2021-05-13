@@ -3,7 +3,10 @@ package com.example.project_si;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,20 +21,24 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference reff;
 
+    private Button profiles;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        a=(TextView)findViewById(R.id.tempView);
-        b=(TextView)findViewById(R.id.humView);
-        c=(TextView)findViewById(R.id.soil1View);
-        d=(TextView)findViewById(R.id.soil2View);
-        e=(TextView)findViewById(R.id.soil3View);
-        f=(TextView)findViewById(R.id.lightView);
-        g=(TextView)findViewById(R.id.waterlvView);
-       // btn=(Button)findViewById(R.id.btn);
+        a= findViewById(R.id.tempView);
+        b= findViewById(R.id.humView);
+        c= findViewById(R.id.soil1View);
+        d= findViewById(R.id.soil2View);
+        e= findViewById(R.id.soil3View);
+        f= findViewById(R.id.lightView);
+        g= findViewById(R.id.waterlvView);
+
+        profiles= findViewById(R.id.profiles);
+        profiles.setOnClickListener(v -> openProfilesActivity());
 
         reff= FirebaseDatabase.getInstance().getReference();
         reff.addValueEventListener(new ValueEventListener() {
@@ -69,4 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void openProfilesActivity(){
+        Intent intent = new Intent(this,ProfilesActivity.class);
+        startActivity(intent);
+    }
+
 }
