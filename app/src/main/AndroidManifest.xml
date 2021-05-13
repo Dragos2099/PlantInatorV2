@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_SI">
+        <activity android:name=".Plant2Activity" />
         <activity android:name=".Plant1Activity" />
         <activity android:name=".ProfilesActivity" />
         <activity android:name=".MainActivity">
