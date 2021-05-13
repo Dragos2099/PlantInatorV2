@@ -16,7 +16,7 @@ public class ProfilesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
 
-        back= findViewById(R.id.back);
+        back= findViewById(R.id.backToMainActivity);
         back.setOnClickListener(v -> backToMainActivity());
 
 
