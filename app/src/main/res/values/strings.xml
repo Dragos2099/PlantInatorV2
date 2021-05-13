@@ -11,4 +11,7 @@
     <string name="plantinator">PlantInator</string>
     <string name="profiles">Profiles</string>
     <string name="back">Back</string>
+    <string name="plantButton_3">Plant 3</string>
+    <string name="plantButton_2">Plant 2</string>
+    <string name="plantButton_1">Plant 1</string>
 </resources>
