@@ -9,4 +9,6 @@
     <string name="plant_2">Plant 2</string>
     <string name="humidity">Humidity</string>
     <string name="plantinator">PlantInator</string>
+    <string name="profiles">Profiles</string>
+    <string name="back">Back</string>
 </resources>
