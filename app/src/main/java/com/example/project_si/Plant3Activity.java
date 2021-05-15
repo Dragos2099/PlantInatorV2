@@ -4,9 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class Plant3Activity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Plant3Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button back;
 
@@ -18,6 +26,25 @@ public class Plant3Activity extends AppCompatActivity {
         back= findViewById(R.id.backToProfiles3);
         back.setOnClickListener(v -> backToProfiles());
 
+
+        Spinner spinner = findViewById(R.id.spinner3);
+
+
+        List<String> categories3 = new ArrayList<>();
+
+        categories3.add(0,"Choose your plant here");
+        categories3.add("Cactus");
+        categories3.add("Orchid");
+        categories3.add("Carnivorous Plant");
+
+
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,categories3);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
     }
 
     public void backToProfiles(){
@@ -25,4 +52,23 @@ public class Plant3Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+        if(parent.getItemAtPosition(position).equals("Choose your plant here")){
+            //nothing
+        }
+        else{
+
+            String text = parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
