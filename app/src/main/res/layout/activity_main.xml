@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
     <TextView
@@ -268,7 +266,6 @@
         android:layout_marginEnd="94dp"
         android:layout_marginRight="94dp"
         android:layout_marginBottom="608dp"
-        android:gravity="center|center_horizontal|fill"
         android:text="@string/plantinator"
         android:textSize="45sp"
         android:visibility="visible"
