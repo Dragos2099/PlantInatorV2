@@ -11,12 +11,25 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Plant3Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button back;
+
+    private Button saveButton;
+
+    private DatabaseReference databaseReference;
+
+    private String choice;
+
+    private Spinner spinner;
+
+    Member member;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +40,7 @@ public class Plant3Activity extends AppCompatActivity implements AdapterView.OnI
         back.setOnClickListener(v -> backToProfiles());
 
 
-        Spinner spinner = findViewById(R.id.spinner3);
+        spinner = findViewById(R.id.spinner3);
 
 
         List<String> categories3 = new ArrayList<>();
@@ -37,6 +50,11 @@ public class Plant3Activity extends AppCompatActivity implements AdapterView.OnI
         categories3.add("Orchid");
         categories3.add("Carnivorous Plant");
 
+        saveButton=findViewById(R.id.saveButton3);
+
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+
+        databaseReference = database.getReference("Plant3_Type");
 
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,categories3);
@@ -44,6 +62,9 @@ public class Plant3Activity extends AppCompatActivity implements AdapterView.OnI
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        member=new Member();
+
+        saveButton.setOnClickListener(v -> saveValue(choice));
 
     }
 
@@ -63,6 +84,7 @@ public class Plant3Activity extends AppCompatActivity implements AdapterView.OnI
 
             String text = parent.getItemAtPosition(position).toString();
             Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+            choice=spinner.getSelectedItem().toString();
         }
 
     }
@@ -71,4 +93,17 @@ public class Plant3Activity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    void saveValue(String choice){
+        if(choice.equals("Choose your plant here")){
+            Toast.makeText(this,"Please select a plant type",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else{
+            member.setPlantType(choice);
+            databaseReference.setValue(choice);
+            Toast.makeText(this,"Value saved !",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
