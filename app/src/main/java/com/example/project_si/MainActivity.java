@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView a,b,c,d,e,f,g;
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference reff;
 
     private Button profiles;
+
+    int waterlvInt;
+
+    String waterlvMessage;
 
 
     @Override
@@ -44,26 +50,37 @@ public class MainActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String temp=dataSnapshot.child("Temperatura").getValue().toString();
+                String temp= Objects.requireNonNull(dataSnapshot.child("Temperatura").getValue()).toString();
                 a.setText(temp);
 
-                String hum=dataSnapshot.child("Umiditate").getValue().toString();
+                String hum= Objects.requireNonNull(dataSnapshot.child("Umiditate").getValue()).toString();
                 b.setText(hum);
 
-                String soil1=dataSnapshot.child("UmiditateSolPlanta1").getValue().toString();
+                String soil1= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta1").getValue()).toString();
                 c.setText(soil1);
 
-                String soil2=dataSnapshot.child("UmiditateSolPlanta2").getValue().toString();
+                String soil2= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta2").getValue()).toString();
                 d.setText(soil2);
 
-                String soil3=dataSnapshot.child("UmiditateSolPlanta3").getValue().toString();
+                String soil3= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta3").getValue()).toString();
                 e.setText(soil3);
 
-                String light=dataSnapshot.child("Lumina").getValue().toString();
+                String light= Objects.requireNonNull(dataSnapshot.child("Lumina").getValue()).toString();
                 f.setText(light);
 
-                String waterlv=dataSnapshot.child("NivelApaRezervor").getValue().toString();
-                g.setText(waterlv);
+                String waterlv= Objects.requireNonNull(dataSnapshot.child("NivelApaRezervor").getValue()).toString();
+               /* g.setText(waterlv);*/
+
+                waterlvInt= Integer.parseInt(waterlv);
+
+                if(waterlvInt<690){
+                    waterlvMessage="TOO LOW";
+                }
+                else {
+                    waterlvMessage="Normal";
+                }
+
+                g.setText(waterlvMessage);
 
 
             }
