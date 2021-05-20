@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView a,b,c,d,e,f,g;
@@ -22,6 +24,23 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference reff;
 
     private Button profiles;
+
+
+    int tempInt;
+    int humInt;
+    int soil1Int;
+    int soil2Int;
+    int soil3Int;
+    int lightInt;
+    int waterlvInt;
+
+    String tempMessage;
+    String humMessage;
+    String soil1Message;
+    String soil2Message;
+    String soil3Message;
+    String lightMessage;
+    String waterlvMessage;
 
 
     @Override
@@ -44,26 +63,106 @@ public class MainActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String temp=dataSnapshot.child("Temperatura").getValue().toString();
-                a.setText(temp);
+                String temp= Objects.requireNonNull(dataSnapshot.child("Temperatura").getValue()).toString();
 
-                String hum=dataSnapshot.child("Umiditate").getValue().toString();
-                b.setText(hum);
+                tempInt=Integer.parseInt(temp);
 
-                String soil1=dataSnapshot.child("UmiditateSolPlanta1").getValue().toString();
-                c.setText(soil1);
+                if(tempInt>35)
+                {
+                    tempMessage=temp+" (TOO HIGH)";
 
-                String soil2=dataSnapshot.child("UmiditateSolPlanta2").getValue().toString();
-                d.setText(soil2);
+                }else if(tempInt > 18){
 
-                String soil3=dataSnapshot.child("UmiditateSolPlanta3").getValue().toString();
-                e.setText(soil3);
+                    tempMessage=temp+" (Normal)";
 
-                String light=dataSnapshot.child("Lumina").getValue().toString();
-                f.setText(light);
+                }else {
 
-                String waterlv=dataSnapshot.child("NivelApaRezervor").getValue().toString();
-                g.setText(waterlv);
+                    tempMessage=temp+" (TOO LOW)";
+                }
+
+                a.setText(tempMessage);
+
+                String hum= Objects.requireNonNull(dataSnapshot.child("Umiditate").getValue()).toString();
+
+                humInt=Integer.parseInt(hum);
+
+                if(humInt>90)
+                {
+                    humMessage=hum+" (TOO HIGH)";
+
+                }else if(humInt > 35){
+
+                    humMessage=hum+" (Normal)";
+
+                }else{
+
+                    humMessage=hum+" (TOO LOW)";
+                }
+
+                b.setText(humMessage);
+
+                String soil1= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta1").getValue()).toString();
+
+                soil1Int=Integer.parseInt(soil1);
+
+                soil1Int/=10;
+
+                soil1Int=70-soil1Int;
+
+                soil1Message=soil1Int+" % (Normal)";
+
+                c.setText(soil1Message);
+
+                String soil2= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta2").getValue()).toString();
+
+                soil2Int=Integer.parseInt(soil2);
+
+                soil2Int/=10;
+
+                soil2Int=70-soil2Int;
+
+                soil2Message=soil2Int+" % (Normal)";
+
+                d.setText(soil2Message);
+
+                String soil3= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta3").getValue()).toString();
+
+                soil3Int=Integer.parseInt(soil3);
+
+                soil3Int/=10;
+
+                soil3Int=70-soil3Int;
+
+                soil3Message=soil3Int+" % (Normal)";
+
+                e.setText(soil3Message);
+
+                String light= Objects.requireNonNull(dataSnapshot.child("Lumina").getValue()).toString();
+
+                lightInt=Integer.parseInt(light);
+
+                if(lightInt==0){
+                    lightMessage="No Light";
+                }
+                else
+                {
+                    lightMessage="Normal";
+                }
+
+                f.setText(lightMessage);
+
+                String waterlv= Objects.requireNonNull(dataSnapshot.child("NivelApaRezervor").getValue()).toString();
+
+                waterlvInt= Integer.parseInt(waterlv);
+
+                if(waterlvInt<690){
+                    waterlvMessage="TOO LOW";
+                }
+                else {
+                    waterlvMessage="Normal";
+                }
+
+                g.setText(waterlvMessage);
 
 
             }
