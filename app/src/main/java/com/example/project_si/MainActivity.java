@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     String tempMessage;
     String humMessage;
-    String Soil1Message;
-    String Soil2Message;
-    String Soil3Message;
+    String soil1Message;
+    String soil2Message;
+    String soil3Message;
     String lightMessage;
     String waterlvMessage;
 
@@ -102,13 +102,40 @@ public class MainActivity extends AppCompatActivity {
                 b.setText(humMessage);
 
                 String soil1= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta1").getValue()).toString();
-                c.setText(soil1);
+
+                soil1Int=Integer.parseInt(soil1);
+
+                soil1Int/=10;
+
+                soil1Int=70-soil1Int;
+
+                soil1Message=soil1Int+" % (Normal)";
+
+                c.setText(soil1Message);
 
                 String soil2= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta2").getValue()).toString();
-                d.setText(soil2);
+
+                soil2Int=Integer.parseInt(soil2);
+
+                soil2Int/=10;
+
+                soil2Int=70-soil2Int;
+
+                soil2Message=soil2Int+" % (Normal)";
+
+                d.setText(soil2Message);
 
                 String soil3= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta3").getValue()).toString();
-                e.setText(soil3);
+
+                soil3Int=Integer.parseInt(soil3);
+
+                soil3Int/=10;
+
+                soil3Int=70-soil3Int;
+
+                soil3Message=soil3Int+" % (Normal)";
+
+                e.setText(soil3Message);
 
                 String light= Objects.requireNonNull(dataSnapshot.child("Lumina").getValue()).toString();
                 f.setText(light);
