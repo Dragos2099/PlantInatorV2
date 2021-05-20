@@ -138,7 +138,18 @@ public class MainActivity extends AppCompatActivity {
                 e.setText(soil3Message);
 
                 String light= Objects.requireNonNull(dataSnapshot.child("Lumina").getValue()).toString();
-                f.setText(light);
+
+                lightInt=Integer.parseInt(light);
+
+                if(lightInt==0){
+                    lightMessage="No Light";
+                }
+                else
+                {
+                    lightMessage="Normal";
+                }
+
+                f.setText(lightMessage);
 
                 String waterlv= Objects.requireNonNull(dataSnapshot.child("NivelApaRezervor").getValue()).toString();
 
