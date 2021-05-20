@@ -25,8 +25,21 @@ public class MainActivity extends AppCompatActivity {
 
     private Button profiles;
 
+
+    int tempInt;
+    int humInt;
+    int soil1Int;
+    int soil2Int;
+    int soil3Int;
+    int lightInt;
     int waterlvInt;
 
+    String tempMessage;
+    String humMessage;
+    String Soil1Message;
+    String Soil2Message;
+    String Soil3Message;
+    String lightMessage;
     String waterlvMessage;
 
 
@@ -51,10 +64,42 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String temp= Objects.requireNonNull(dataSnapshot.child("Temperatura").getValue()).toString();
-                a.setText(temp);
+
+                tempInt=Integer.parseInt(temp);
+
+                if(tempInt>35)
+                {
+                    tempMessage=temp+" (TOO HIGH)";
+
+                }else if(tempInt > 18){
+
+                    tempMessage=temp+" (Normal)";
+
+                }else {
+
+                    tempMessage=temp+" (TOO LOW)";
+                }
+
+                a.setText(tempMessage);
 
                 String hum= Objects.requireNonNull(dataSnapshot.child("Umiditate").getValue()).toString();
-                b.setText(hum);
+
+                humInt=Integer.parseInt(hum);
+
+                if(humInt>90)
+                {
+                    humMessage=hum+" (TOO HIGH)";
+
+                }else if(humInt > 35){
+
+                    humMessage=hum+" (Normal)";
+
+                }else{
+
+                    humMessage=hum+" (TOO LOW)";
+                }
+
+                b.setText(humMessage);
 
                 String soil1= Objects.requireNonNull(dataSnapshot.child("UmiditateSolPlanta1").getValue()).toString();
                 c.setText(soil1);
@@ -69,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 f.setText(light);
 
                 String waterlv= Objects.requireNonNull(dataSnapshot.child("NivelApaRezervor").getValue()).toString();
-               /* g.setText(waterlv);*/
 
                 waterlvInt= Integer.parseInt(waterlv);
 
