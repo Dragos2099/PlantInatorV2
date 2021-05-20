@@ -47,7 +47,7 @@ public class Plant1Activity extends AppCompatActivity implements AdapterView.OnI
         categories.add(0,"Choose your plant here");
         categories.add("Cactus");
         categories.add("Orchid");
-        categories.add("Carnivorous Plant");
+        categories.add("Carnivorous");
 
 
         saveButton=findViewById(R.id.saveButton1);
