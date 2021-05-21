@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
                 lightInt=Integer.parseInt(light);
 
-                if(lightInt==0){
+                if(lightInt==1){
                     lightMessage="No Light";
                 }
                 else
